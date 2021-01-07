@@ -9,8 +9,8 @@ To use, compile this for your target OS, put the DLL into the same folder as you
 	if (!GLOB.auxmaptick_initialized && fexists(AUXMAPTICK) && findtext(call(AUXMAPTICK,"auxtools_init")(),"SUCCESS"))\
 		GLOB.auxmaptick_initialized = TRUE;\
 ```
-2. Define a `/proc/initialize_maptick` and call it in `/world/New`.
-3. Do as 1, but for disabling it, e.g.
+2. Define a `/proc/initialize_maptick` and call it in `/world/New`, after calling the above macro.
+3. Do as 1, but for disabling it, e.g., and call it in `/world/Del`.
 ```c
 #define AUXMAPTICK_SHUTDOWN\
 	if (GLOB.auxmaptick_initialized && fexists(AUXMAPTICK))\
