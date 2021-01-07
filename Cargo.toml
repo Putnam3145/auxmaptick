@@ -1,0 +1,17 @@
+[package]
+name = "auxmaptick"
+version = "0.1.0"
+authors = ["Putnam <putnam3145@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["lib"]
+
+[dependencies]
+auxtools = { git = "https://github.com/willox/auxtools" }
+
+[dependencies.detour]
+version = "0.7"
+default-features = false
