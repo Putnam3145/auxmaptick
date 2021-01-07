@@ -8,6 +8,13 @@ extern "C" {
     static mut send_maps_original: unsafe extern "C" fn();
 }
 
+#[no_mangle]
+unsafe extern "C" fn map_tick_hook() {
+    let start = std::time::Instant::now();
+    send_maps_original();
+	Value::globals().set("internal_tick_usage", start.elapsed().as_micros() as f32 / 100000.0);
+}
+
 #[hook("/proc/initialize_maptick")]
 fn _init_maptick_hook() {
     let byondcore = sigscan::Scanner::for_module(BYONDCORE).unwrap();
@@ -40,16 +47,7 @@ fn _init_maptick_hook() {
     
         tick_hook.enable().map_err(|_| runtime!("Couldn't enable send_maps detour"))?;
         send_maps_original = std::mem::transmute(tick_hook.trampoline());
-        std::mem::forget(tick_hook);    
+        std::mem::forget(tick_hook);
     };
-    Ok(Value::null())
-}
-
-#[no_mangle]
-extern "C" fn map_tick_hook() {
-    let start = std::time::Instant::now();
-    unsafe {
-        send_maps_original();
-    }
-	Value::globals().set("internal_tick_usage", start.elapsed().as_micros() as f32 / 100000.0);
+    Ok(Value::from(true))
 }
