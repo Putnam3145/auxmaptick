@@ -17,3 +17,6 @@ To use, compile this for your target OS, put the compiled library into the same 
 		call(AUXMAPTICK,"auxtools_shutdown")();\
 		GLOB.auxmaptick_initialized = FALSE;\
 ```
+4. You can now get the amount of time in milliseconds used by maptick by accessing the `internal_tick_usage` global variable.
+
+This is going to be made obsolete by Byond 514. When you update to 514, use that instead.
