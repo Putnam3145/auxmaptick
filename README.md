@@ -1,8 +1,8 @@
 Adds functionality to [auxtools](https://github.com/willox/auxtools) that sets a global variable in byond whenever it sends maps showing how long sending maps took, in ticks.
 
-To use, compile this for your target OS, put the DLL into the same folder as your .dme, then:
+To use, compile this for your target OS, put the compiled library into the same folder as your .dme, then:
 
-1. Define a macro or function to enable the DLL's instance of auxtools, e.g.
+1. Define a macro or function to enable the library's instance of auxtools, e.g.
 ```c
 #define AUXMAPTICK ((world.system_type == MS_WINDOWS ? "auxmaptick.dll" : "auxmaptick.so"))
 #define AUXMAPTICK_CHECK\
